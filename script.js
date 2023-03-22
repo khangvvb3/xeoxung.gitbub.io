@@ -6,20 +6,25 @@
 // Most of this should be configuration.
 
 // Timing multiplier for entire game engine.
-let gameSpeed = 1;
+let gameSpeed = 0.5;
 
 // Colors
-const BLUE =   { r: 0x67, g: 0xd7, b: 0xf0 };
-const GREEN =  { r: 0xa6, g: 0xe0, b: 0x2c };
-const PINK =   { r: 0xfa, g: 0x24, b: 0x73 };
-const ORANGE = { r: 0xfe, g: 0x95, b: 0x22 };
+// const BLUE =   { r: 0x67, g: 0xd7, b: 0xf0 };
+// const GREEN =  { r: 0xa6, g: 0xe0, b: 0x2c };
+// const PINK =   { r: 0xfa, g: 0x24, b: 0x73 };
+// const ORANGE = { r: 0xfe, g: 0x95, b: 0x22 };
+
+const BLUE = {r: 47, g:116, b : 155};
+const GREEN = {r: 62, g:118, b : 48};
+const PINK =   { r: 212, g: 152, b: 203 };
+const ORANGE = { r: 237, g: 164, b: 85 };
 const allColors = [BLUE, GREEN, PINK, ORANGE];
 
 // Gameplay
 const getSpawnDelay = () => {
 	const spawnDelayMax = 1400;
 	const spawnDelayMin = 550;
-	const spawnDelay = spawnDelayMax - state.game.cubeCount * 3.1;
+	const spawnDelay = spawnDelayMax - state.game.cubeCount * 4.1;
 	return Math.max(spawnDelay, spawnDelayMin);
 }
 const doubleStrongEnableScore = 2000;
@@ -68,10 +73,9 @@ const fragRadius = targetRadius / 3;
 
 // Game canvas element needed in setup.js and interaction.js
 const canvas = document.querySelector('#c');
-
 // 3D camera config
 // Affects perspective
-const cameraDistance = 900;
+const cameraDistance = 800;
 // Does not affect perspective
 const sceneScale = 1;
 // Objects that get too close to the camera will be faded out to transparent over this range.
@@ -964,7 +968,7 @@ const getTarget = (() => {
 
 		if (spinner) {
 			// Ends up spinning a random axis
-			spinSpeeds[0] = -0.25;
+			spinSpeeds[0] = -0.5;
 			spinSpeeds[1] = 0;
 			target.rotateZ = random(0, TAU);
 		}
@@ -1014,6 +1018,7 @@ const returnTarget = target => {
 
 
 function resetAllTargets() {
+
 	while(targets.length) {
 		returnTarget(targets.pop());
 	}
